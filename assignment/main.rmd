@@ -1,4 +1,38 @@
-##Manipulaciòn de datos
+## Tarea
+
+#Compruebe la convergencia de las siguientes series.
+
+## Serie 1
+serie_1 <- function (n) {
+  x = 0
+  for (i in seq (1:n)){
+    x = (-1)**i * tanh(i)
+  }    
+return(x)
+}
+
+x <- 1:50
+y <- sapply (x, serie_1)
+df <- data.frame(x = x, y = y)
+plot(x,y, type= "l", xlab = "X", ylab= "Y", col="orange", main = "Serie_1")
+
+#La serie_1 oscila entre 1 y -1, por lo tanto no converge, diverge.
+
+## Serie 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Manipulaciòn de datos
 #Instalamos la libreria para poder importar los datos
 library(tidyverse)
 
