@@ -15,20 +15,61 @@ x <- 1:50
 y <- sapply (x, serie_1)
 df <- data.frame(x = x, y = y)
 plot(x,y, type= "l", xlab = "X", ylab= "Y", col="orange", main = "Serie_1")
-
+grid()
 #La serie_1 oscila entre 1 y -1, por lo tanto no converge, diverge.
 
 ## Serie 2
+serie_2 <- function(n) {
+  x <- 0
+  for (i in seq (1:n)){
+    x = ((atan(i))**(2) / ((i**2) + 1))
+  }
+  return(x)
+}
 
+x <- 1:50
+y <- sapply (x, serie_2)
+df <- data.frame(x = x, y = y)
 
+plot(x,y, type= "l", xlab = "X", ylab= "Y", col="orange", main = "Serie_2")
+grid()
 
+## Serie 3
+serie_3 <- function (n){
+  if (n<2){
+    print("El valor debe ser mayor que 1")
+  }
+  x<- 0
+  for (i in seq (2:n)){
+    x = (log(factorial(i),i)/(i**3))
+  }
+return(x)
+}
+x <- 1:50
+y <- sapply (x, serie_3)
+df <- data.frame(x = x, y = y)
+plot(x,y, type= "l", xlab = "X", ylab= "Y", col="blue", main = "Serie_3")
 
-
-
-
-
-
-
+## Mostrar numericamente
+serie_4 <- function (x,n){
+  val_x <- 0
+  for (i in (0:(n-1))){
+    val_x <- val_x + ((-1)**(i) / factorial(2*i+1))*(x**((2*i)+1))
+  }
+  return(val_x)
+}
+  
+numero_x <- seq(0,2*pi,length.out = 100)
+ 
+y_seno <- sin(numero_x)
+y_serie_4 <- sapply(numero_x, function(x)serie_4(x,10))
+numero_x
+y_serie_4
+df <- data.frame(numero_x, y_serie_4)
+#Grafica seno 
+plot(numero_x,y_seno, type = "l", xlab = "x", ylab = "Sen(x)")
+#Grafica serie
+plot(numero_x, y_serie_4, type = "l", xlab = "x", ylab = "Serie_4")
 
 
 
