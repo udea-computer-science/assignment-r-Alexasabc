@@ -1,0 +1,24 @@
+##Manipulaciòn de datos
+#Instalamos la libreria para poder importar los datos
+library(tidyverse)
+
+#Importamos los datos
+datos = read.csv("/workspaces/assignment-r-Alexasabc/assignment/data.csv", header = FALSE, , sep = "\t")
+datos = data.frame(datos)
+datos
+
+#Imprima la suma de la segunda columna de la base de datos
+library(stringr)
+sum_2_col <- sum(datos$V2)
+str_c("La suma de la segunda columna es ", sum_2_col)
+
+library(dplyr)
+#Imprima la cantidad de registros por letra para la primera columna, ordenados alfabeticamente.
+registros_c1 <- group_by(datos, V1) %>% 
+  count()
+registros_c1
+
+#Imprima la suma de la columna 2 por cada letra de la primera columna, ordneados alfabeticamente.
+suma_col2 <- group_by(datos, V1) %>% 
+  summarise(sum_col2 = sum (V2))
+suma_col2
