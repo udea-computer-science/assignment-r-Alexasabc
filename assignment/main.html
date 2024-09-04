@@ -352,8 +352,62 @@ display: none;
 </div>
 
 
-<p>##Manipulaciòn de datos #Instalamos la libreria para poder importar
-los datos library(tidyverse)</p>
+<div id="tarea" class="section level2">
+<h2>Tarea</h2>
+<p>#Compruebe la convergencia de las siguientes series.</p>
+</div>
+<div id="serie-1" class="section level2">
+<h2>Serie 1</h2>
+<p>serie_1 &lt;- function (n) { x = 0 for (i in seq (1:n)){ x = x +
+(-1)**i * tanh(i) }<br />
+return(x) }</p>
+<p>x &lt;- 1:50 y &lt;- sapply (x, serie_1) df &lt;- data.frame(x = x, y
+= y) plot(x,y, type= “l”, xlab = “X”, ylab= “Y”, col=“orange”, main =
+“Serie_1”) grid() #La serie_1 oscila entre 1 y -1, por lo tanto no
+converge, diverge.</p>
+</div>
+<div id="serie-2" class="section level2">
+<h2>Serie 2</h2>
+<p>serie_2 &lt;- function(n) { x &lt;- 0 for (i in seq (1:n)){ x = x +
+((atan(i))<strong>(2) / ((i</strong>2) + 1)) } return(x) }</p>
+<p>x &lt;- 1:50 y &lt;- sapply (x, serie_2) df &lt;- data.frame(x = x, y
+= y) plot(x,y, type= “l”, xlab = “X”, ylab= “Y”, col=“orange”, main =
+“Serie_2”) grid() serie_2(100) #Vemos que la serie converge a 1.255.</p>
+</div>
+<div id="serie-3" class="section level2">
+<h2>Serie 3</h2>
+<p>serie_3 &lt;- function (n){ if (n&lt;2){ print(“El valor debe ser
+mayor que 1”) } x &lt;- 0 for (i in 2:n) { x &lt;- x +
+(log(factorial(i), base=i)/i**3) } return(x) } x &lt;- 2:100 y &lt;-
+sapply (x, serie_3) df &lt;- data.frame(x = x, y = y) plot(x,y, type=
+“l”, xlab = “X”, ylab= “Y”, col=“blue”, main = “Serie_3”) grid()
+serie_3(100) #Vemos que la serie converge a 0.359.</p>
+</div>
+<div id="mostrar-numericamente" class="section level2">
+<h2>Mostrar numericamente</h2>
+<p>serie_4 &lt;- function (x,n){ val_x &lt;- 0 for (i in (0:(n-1))){
+val_x &lt;- val_x + ((-1)<strong>(i) /
+factorial(2<em>i+1))</em>(x</strong>((2*i)+1)) } return(val_x) }</p>
+<p>numero_x &lt;- seq(0,2*pi,length.out = 100)</p>
+<p>y_seno &lt;- sin(numero_x) y_serie_4 &lt;- sapply(numero_x,
+function(x)serie_4(x,10)) numero_x y_serie_4 df &lt;-
+data.frame(numero_x, y_serie_4) #Grafica seno plot(numero_x,y_seno, type
+= “l”, xlab = “x”, ylab = “Sen(x)”,main = “Grafica Seno”, col = “pink”)
+grid() #Grafica serie plot(numero_x, y_serie_4, type = “l”, xlab = “x”,
+ylab = “Serie_4”, main = “Grafica Serie_4”, col =“green”) grid()</p>
+<p>#Grafica de comparación df &lt;- data.frame(numero_x, y_serie_4,
+y_seno) library(ggplot2) ggplot(df)+ geom_line(aes(numero_x, linetype =
+“longdash”, lwd= 0.5, y_serie_4, colour = “Serie_4”)) +
+geom_line(aes(lwd= 0.5, numero_x,y_seno, linetype = “dotted”, colour =
+“Seno”)) + scale_linetype_identity() + labs(title = “Comparación Serie_4
+vs Seno”, x = “X”, y = “Y”) + guides(color = guide_legend(title =
+“Lineas”)) grid()</p>
+<p>#Hay un resultado igual para el numero de 1. serie_4(1,10) sin(1)</p>
+</div>
+<div id="manipulaciòn-de-datos" class="section level2">
+<h2>Manipulaciòn de datos</h2>
+<p>#Instalamos la libreria para poder importar los datos
+library(tidyverse)</p>
 <p>#Importamos los datos datos =
 read.csv(“/workspaces/assignment-r-Alexasabc/assignment/data.csv”,
 header = FALSE, , sep = “) datos = data.frame(datos) datos</p>
@@ -366,6 +420,7 @@ group_by(datos, V1) %&gt;% count() registros_c1</p>
 <p>#Imprima la suma de la columna 2 por cada letra de la primera
 columna, ordneados alfabeticamente. suma_col2 &lt;- group_by(datos, V1)
 %&gt;% summarise(sum_col2 = sum (V2)) suma_col2</p>
+</div>
 
 
 

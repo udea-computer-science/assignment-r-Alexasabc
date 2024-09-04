@@ -46,9 +46,9 @@ serie_3 <- function (n){
   }
   return(x)
 }
-
 x <- 2:100
 y <- sapply (x, serie_3)
+
 df <- data.frame(x = x, y = y)
 plot(x,y, type= "l", xlab = "X", ylab= "Y", col="blue", main = "Serie_3")
 grid()
@@ -73,6 +73,7 @@ y_serie_4
 df <- data.frame(numero_x, y_serie_4)
 #Grafica seno 
 plot(numero_x,y_seno, type = "l", xlab = "x", ylab = "Sen(x)",main = "Grafica Seno", col = "pink")
+
 grid()
 #Grafica serie
 plot(numero_x, y_serie_4, type = "l", xlab = "x", ylab = "Serie_4", main = "Grafica Serie_4", col ="green")
